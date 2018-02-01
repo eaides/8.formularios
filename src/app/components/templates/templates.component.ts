@@ -4,7 +4,11 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-templates',
   templateUrl: './templates.component.html',
-  styles: []
+  styles: [`
+    .ng-invalid.ng-touched:not(form) {
+        border: 1px solid red;
+    }
+  `]
 })
 export class TemplatesComponent implements OnInit {
 
