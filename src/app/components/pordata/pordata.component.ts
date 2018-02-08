@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-pordata',
@@ -7,9 +8,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PordataComponent implements OnInit {
 
-  constructor() { }
+  forma: FormGroup;
 
-  ngOnInit() {
+  constructor() {
+    this.forma = new FormGroup({
+      nombre: new FormControl('',
+        [
+          Validators.required,
+          Validators.minLength(4)
+        ]),
+      apellido: new FormControl('',
+        [
+          Validators.required,
+          Validators.minLength(5)
+      ]),
+      correo: new FormControl('',
+        [
+          Validators.required,
+          Validators.pattern('^[a-z0-9._%+]+@[a-z0-9.-]+\\.[a-z]{2,3}$')
+      ])
+    });
   }
 
+  ngOnInit(
+  ) {  }
+
+  guardarCambios() {
+    console.log('value', this.forma.value);
+    console.log('obj', this.forma);
+  }
 }

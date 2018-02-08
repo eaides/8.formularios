@@ -1,3 +1,77 @@
-<p>
-  pordata works!
-</p>
+<h4>Formularios <small>data</small></h4>
+<hr>
+<form [formGroup]="forma" (ngSubmit)="guardarCambios()" novalidate>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Nombre</label>
+    <div class="col-8">
+      <input class="form-control"
+             type="text"
+             placeholder="Nombre"
+             formControlName="nombre"
+             name="nombre"
+             [ngClass]="{'is-invalid': (forma.controls.nombre.invalid && forma.controls.nombre.touched) }"
+      >
+      <div *ngIf="forma.controls.nombre.errors?.required && forma.controls.nombre.touched"
+           class="invalid-feedback">El campo Nombre es requerido</div>
+      <div *ngIf="forma.controls.nombre.errors?.minlength && forma.controls.nombre.touched"
+           class="invalid-feedback">Por lo menos {{ forma.controls.nombre.errors?.minlength?.requiredLength }} caracteres</div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Apellido</label>
+    <div class="col-8">
+      <input class="form-control"
+             type="text"
+             placeholder="Apellido"
+             formControlName="apellido"
+             name="apellido"
+             [ngClass]="{'is-invalid': (forma.controls.apellido.invalid && forma.controls.apellido.touched) }"
+      >
+      <div *ngIf="forma.controls.apellido.errors.required && forma.controls.apellido.touched"
+           class="invalid-feedback">El campo Apellido es requerido</div>
+      <div *ngIf="forma.controls.apellido.errors.minLength && forma.controls.apellido.touched"
+           class="invalid-feedback">Por lo menos {{ forma.controls.apellido.errors?.minlength?.requiredLength }} caracteres</div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Correo</label>
+    <div class="col-md-8">
+      <input class="form-control"
+             type="email"
+             placeholder="Correo electrónico"
+             formControlName="correo"
+             name="correo"
+             [ngClass]="{'is-invalid': (forma.controls.correo.invalid && forma.controls.correo.touched) }"
+      >
+      <div *ngIf="forma.controls.correo.errors?.required && forma.controls.correo.touched"
+           class="invalid-feedback">El campo Correo es requerido</div>
+      <div *ngIf="forma.controls.correo.errors?.pattern && forma.controls.correo.touched"
+           class="invalid-feedback">Correo debe ser un email valido</div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col-md-8">
+      <button
+
+            type="submit"
+            class="btn btn-outline-primary"
+      >Guardar
+      </button>
+      <!--[disabled]="forma.invalid"-->
+    </div>
+  </div>
+
+  <pre>
+    {{ forma.valid }}
+    {{ forma.controls.nombre.valid }}
+    {{ forma.controls.nombre.invalid }}
+    {{ forma.controls.nombre.errors.minlength.requiredLength }}
+  </pre>
+
+</form>
+

@@ -20,7 +20,7 @@
              [ngClass]="{'is-invalid': ((nombre.errors?.required || nombre.errors?.minlength) && nombre.touched) }"
       >
       <div *ngIf="nombre.errors?.required" class="invalid-feedback">El campo nombre es requerido</div>
-      <div *ngIf="nombre.errors?.minlength" class="invalid-feedback">El campo nombre requirere minimo {{nombre.errors.minlength.requiredLength}} caracteres</div>
+      <div *ngIf="nombre.errors?.minlength" class="invalid-feedback">El campo nombre requirere minimo {{nombre.errors?.minlength.requiredLength }} caracteres</div>
     </div>
   </div>
 
