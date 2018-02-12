@@ -10,12 +10,12 @@
              placeholder="Nombre"
              formControlName="nombre"
              name="nombre"
-             [ngClass]="{'is-invalid': (forma.controls.nombre.invalid && forma.controls.nombre.touched) }"
+             [ngClass]="{'is-invalid': (forma.controls.nombrecompleto.nombre.valid && forma.controls.nombrecompleto.nombre.touched) }"
       >
-      <div *ngIf="forma.controls.nombre.errors?.required && forma.controls.nombre.touched"
+      <div *ngIf="forma.controls.nombrecompleto.nombre.errors?.required && forma.controls.nombrecompleto.nombre.touched"
            class="invalid-feedback">El campo Nombre es requerido</div>
-      <div *ngIf="forma.controls.nombre.errors?.minlength && forma.controls.nombre.touched"
-           class="invalid-feedback">Por lo menos {{ forma.controls.nombre.errors?.minlength?.requiredLength }} caracteres</div>
+      <div *ngIf="forma.controls.nombrecompleto.nombre.errors?.minlength && forma.controls.nombrecompleto.nombre.touched"
+           class="invalid-feedback">Por lo menos {{ forma.controls.nombrecompleto.nombre.errors?.minlength?.requiredLength }} caracteres</div>
     </div>
   </div>
 
@@ -29,9 +29,9 @@
              name="apellido"
              [ngClass]="{'is-invalid': (forma.controls.apellido.invalid && forma.controls.apellido.touched) }"
       >
-      <div *ngIf="forma.controls.apellido.errors.required && forma.controls.apellido.touched"
+      <div *ngIf="forma.controls.apellido.errors?.required && forma.controls.apellido.touched"
            class="invalid-feedback">El campo Apellido es requerido</div>
-      <div *ngIf="forma.controls.apellido.errors.minLength && forma.controls.apellido.touched"
+      <div *ngIf="forma.controls.apellido.errors?.minlength && forma.controls.apellido.touched"
            class="invalid-feedback">Por lo menos {{ forma.controls.apellido.errors?.minlength?.requiredLength }} caracteres</div>
     </div>
   </div>
@@ -57,20 +57,18 @@
     <label class="col-2 col-form-label">&nbsp;</label>
     <div class="input-group col-md-8">
       <button
-
-            type="submit"
-            class="btn btn-outline-primary"
+          [disabled]="forma.invalid"
+          type="submit"
+          class="btn btn-outline-primary"
       >Guardar
       </button>
-      <!--[disabled]="forma.invalid"-->
     </div>
   </div>
 
   <pre>
     {{ forma.valid }}
-    {{ forma.controls.nombre.valid }}
-    {{ forma.controls.nombre.invalid }}
-    {{ forma.controls.nombre.errors.minlength.requiredLength }}
+    {{ forma.controls.nombrecompleto.nombre.valid }}
+    {{ forma.controls.nombrecompleto.nombre.invalid }}
   </pre>
 
 </form>
