@@ -55,7 +55,6 @@ export class PordataComponent implements OnInit {
   guardarCambios() {
     console.log('value', this.forma.value);
     console.log('obj', this.forma);
-
     this.forma.reset( {
       nombre: '',
       apellido: '',
