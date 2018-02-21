@@ -75,9 +75,36 @@
   </div>
 
   <div class="form-group row">
+    <label class="col-2 col-form-label">Pasatiempos</label>
+    <div class="col-md-8" formArrayName="pasatiempos">
+      <input *ngFor="let pasatiempo of forma.controls['pasatiempos'].controls; let i = index"
+           class="form-control"
+           type="text"
+           placeholder="pasatiempo..."
+           [formControlName]="i"
+      >
+      <!--name="correo"-->
+      <!--[ngClass]="{'is-invalid': (-->
+      <!--forma.controls['correo'].invalid &&-->
+      <!--forma.controls['correo'].touched-->
+      <!--)}"-->
+
+      <!--<div *ngIf="forma.controls['correo'].errors?.required && forma.controls['correo'].touched"-->
+      <!--class="invalid-feedback">El campo Correo es requerido</div>-->
+      <!--<div *ngIf="forma.controls['correo'].errors?.pattern && forma.controls['correo'].touched"-->
+      <!--class="invalid-feedback">Correo debe ser un email valido</div>-->
+      <br>
+      <button type="button" class="btn btn-primary"
+              (click)="agregarPasatiempo()"
+      >Nuevo</button>
+      <!--onclick="return false;"-->
+    </div>
+  </div>
+
+
+  <div class="form-group row">
     <label class="col-2 col-form-label">&nbsp;</label>
     <div class="input-group col-md-8">
-
       <button
           [disabled]="forma.invalid"
           type="submit"
