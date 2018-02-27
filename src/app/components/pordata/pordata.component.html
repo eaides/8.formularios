@@ -101,21 +101,84 @@
     </div>
   </div>
 
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Username</label>
+    <div class="col-8">
+      <input class="form-control"
+             type="text"
+             placeholder="UserName"
+             formControlName="username"
+             name="username"
+             [ngClass]="{'is-invalid': (
+                    forma.controls['username'].invalid &&
+                    forma.controls['username'].touched
+                )}"
+      >
+      <div *ngIf="forma.controls['username'].errors?.required
+                  && forma.controls['username'].touched"
+           class="invalid-feedback">El campo Username es requerido</div>
+      <div *ngIf="forma.controls['username'].errors?.existeusuario
+                  && forma.controls['username'].touched"
+           class="invalid-feedback">{{ asyncErrors.existeusuario }}</div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Password</label>
+    <div class="col-8">
+      <input class="form-control"
+             type="password"
+             placeholder="Password"
+             formControlName="password1"
+             name="password1"
+             [ngClass]="{'is-invalid': (
+                    forma.controls['password1'].invalid &&
+                    forma.controls['password1'].touched
+                )}"
+      >
+      <div *ngIf="forma.controls['password1'].errors?.required
+                  && forma.controls['password1'].touched"
+           class="invalid-feedback">El campo Password es requerido</div>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Repetir Password</label>
+    <div class="col-8">
+      <input class="form-control"
+             type="password"
+             placeholder="Repita el Password"
+             formControlName="password2"
+             name="password2"
+             [ngClass]="{'is-invalid': (
+                    forma.controls['password2'].invalid &&
+                    forma.controls['password2'].touched
+                )}"
+      >
+      <div *ngIf="forma.controls['password2'].errors?.required
+                  && forma.controls['password2'].touched"
+           class="invalid-feedback">Las contraasenias deben coincidir</div>
+      <div *ngIf="forma.controls['password2'].errors?.notthesame
+                  && forma.controls['password2'].touched"
+           class="invalid-feedback">Las contrasenias no son iguales</div>
+    </div>
+  </div>
 
   <div class="form-group row">
     <label class="col-2 col-form-label">&nbsp;</label>
     <div class="input-group col-md-8">
       <button
-          [disabled]="forma.invalid"
+          [disabled]="forma.invalid || forma.status == 'PENDING'"
           type="submit"
           class="btn btn-outline-primary"
-      >Guardar
+      > Guardar
       </button>
     </div>
   </div>
 
   <pre>
     La forma es valida ? {{ forma.valid }}
+    Status de la forma = {{ forma.status }}
     El nombrecompleto.nombre es Valido ? {{ forma.controls['nombrecompleto'].controls['nombre'].valid }}
     El nombrecompleto.nombre es Invalido ? {{ forma.controls['nombrecompleto'].controls['nombre'].invalid }}
     El nombrecompleto.nombre esta tocado ? {{ forma.controls['nombrecompleto'].controls['nombre'].touched }}
